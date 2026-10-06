@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PHYSIX - Interactive Virtual Physics Lab with six browser-based physics simulations." />
+  <title>PHYSIX — Interactive Virtual Physics Lab</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand" data-go-home tabindex="0" role="button" aria-label="Go to PHYSIX home">
+      <div class="brand-mark">⚛</div>
+      <div>
+        <div class="brand-name">PHYSIX</div>
+        <div class="brand-subtitle">Interactive Virtual Physics Lab</div>
+      </div>
+    </div>
+    <nav class="top-nav" aria-label="Primary navigation">
+      <button class="nav-btn active" data-nav="home">Home</button>
+      <button class="nav-btn" data-nav="simulators">Simulators</button>
+      <button class="nav-btn" data-nav="about">About</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="homeView" class="view home-view">
+      <div class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">CODE × PHYSICS × VISUALIZATION</div>
+          <h1>See the equations <span>come alive.</span></h1>
+          <p>
+            PHYSIX is an interactive virtual physics laboratory. Change real physical parameters,
+            run a simulation, watch the phenomenon unfold, and inspect the calculated results.
+          </p>
+          <div class="hero-actions">
+            <button class="primary-btn" data-go-simulators>Explore 6 Simulators →</button>
+            <button class="secondary-btn" data-open-about>How it works</button>
+          </div>
+          <div class="hero-note">
+            <span class="status-dot"></span> Runs locally in your browser • No hardware required
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orbit orbit-a"></div>
+          <div class="orbit orbit-b"></div>
+          <div class="orbit orbit-c"></div>
+          <div class="hero-atom">⚛</div>
+          <div class="floating-equation eq-1">F = ma</div>
+          <div class="floating-equation eq-2">λ = h/p</div>
+          <div class="floating-equation eq-3">T = 2π√(L/g)</div>
+          <div class="floating-equation eq-4">E = −N dΦ/dt</div>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">THE LAB</div>
+          <h2>Six phenomena. One interactive workspace.</h2>
+        </div>
+        <div class="section-count">06 SIMULATORS</div>
+      </div>
+
+      <div id="simulatorCards" class="simulator-grid"></div>
+    </section>
+
+    <section id="simulatorView" class="view simulator-view hidden">
+      <div class="sim-topbar">
+        <button id="backButton" class="back-btn">← All simulators</button>
+        <div class="sim-title-wrap">
+          <div id="simEyebrow" class="eyebrow">SIMULATOR</div>
+          <h1 id="simTitle">Projectile Motion</h1>
+        </div>
+        <div class="sim-top-actions">
+          <select id="simulatorSelect" class="sim-select" aria-label="Switch simulator">
+            <option value="projectile">🏹 Projectile Motion</option>
+            <option value="optical">🔦 Optical Fiber / TIR</option>
+            <option value="shm">🌀 Simple Harmonic Motion</option>
+            <option value="pendulum">🔔 Simple Pendulum</option>
+            <option value="induction">🧲 Electromagnetic Induction</option>
+            <option value="doppler">🔊 Doppler Effect</option>
+          </select>
+          <button id="shareButton" class="secondary-btn">Share</button>
+          <button id="resetButton" class="secondary-btn">Reset</button>
+        </div>
+      </div>
+
+      <div class="sim-layout">
+        <aside class="control-panel">
+          <div class="panel-title">Controls</div>
+          <div id="controlsContainer"></div>
+          <div class="control-actions">
+            <button id="startButton" class="primary-btn full-width">▶ Start simulation</button>
+            <button id="pauseButton" class="secondary-btn full-width" disabled>Ⅱ Pause</button>
+          </div>
+          <div id="validationMessage" class="validation" aria-live="polite"></div>
+        </aside>
+
+        <section class="workspace">
+          <div class="canvas-card">
+            <div class="canvas-header">
+              <div>
+                <div class="mini-label">LIVE VISUALIZATION</div>
+                <div id="canvasSubtitle" class="canvas-subtitle">Parameter-driven simulation</div>
+              </div>
+              <div id="simStatus" class="sim-status"><span class="status-dot"></span> Ready</div>
+            </div>
+            <div class="canvas-wrap">
+              <canvas id="sceneCanvas" width="1200" height="620" data-css-height="620" aria-label="Physics simulation visualization"></canvas>
+            </div>
+          </div>
+
+          <div class="results-grid" id="resultsGrid"></div>
+
+          <div class="canvas-card graph-card">
+            <div class="canvas-header">
+              <div>
+                <div class="mini-label">GRAPH</div>
+                <div id="graphTitle" class="canvas-subtitle">Live data</div>
+              </div>
+              <div id="graphLegend" class="graph-legend"></div>
+            </div>
+            <div class="canvas-wrap graph-wrap">
+              <canvas id="graphCanvas" width="1200" height="420" data-css-height="420" aria-label="Physics data graph"></canvas>
+            </div>
+          </div>
+
+          <div class="theory-card">
+            <div class="mini-label">THEORY</div>
+            <h2 id="theoryTitle">Physics model</h2>
+            <div id="theoryBody" class="theory-body"></div>
+            <div id="equationBlock" class="equation-block"></div>
+            <div class="theory-footer" id="theoryFooter"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="aboutView" class="view about-view hidden">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">ABOUT THE PROJECT</div>
+          <h1>A virtual laboratory built with code.</h1>
+        </div>
+      </div>
+      <div class="about-grid">
+        <article class="info-card">
+          <div class="card-number">01</div>
+          <h2>Interactive</h2>
+          <p>Students change physical parameters and immediately see their effect on an animated model.</p>
+        </article>
+        <article class="info-card">
+          <div class="card-number">02</div>
+          <h2>Computational</h2>
+          <p>Each visualization is driven by equations implemented in JavaScript rather than a pre-recorded animation.</p>
+        </article>
+        <article class="info-card">
+          <div class="card-number">03</div>
+          <h2>Educational</h2>
+          <p>Every simulator combines a visual model, calculated measurements, graphs, and a concise physics explanation.</p>
+        </article>
+        <article class="info-card">
+          <div class="card-number">04</div>
+          <h2>Offline-ready</h2>
+          <p>The core site uses plain HTML, CSS, and JavaScript and does not require a server or hardware to run locally.</p>
+        </article>
+      </div>
+      <div class="project-strip">
+        <div><span class="strip-label">TECH STACK</span><strong>HTML • CSS • JavaScript • Canvas API</strong></div>
+        <div><span class="strip-label">PROJECT TYPE</span><strong>Educational Software / Physics Simulation</strong></div>
+        <div><span class="strip-label">SIMULATIONS</span><strong>6 Interactive Models</strong></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js?v=4"></script>
+</body>
+</html>
