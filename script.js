@@ -113,6 +113,68 @@
       theory: 'The Doppler effect is the apparent frequency shift caused by relative motion between a wave source and an observer. For a source moving toward a stationary observer, the emitted wavefronts are compressed in front of the source.',
       equations: ['General: f′ = f (v + vₒ)/(v − vₛ)', 'For observer at rest: f′ = fv/(v − vₛ)', 'λ = v/f'],
       footer: 'Sign convention used here: vₛ > 0 means the source moves toward the observer; vₒ > 0 means the observer moves toward the source. Keep |vₛ| < v.'
+    },
+    viwire: {
+      icon: '⚡', tag: 'Electricity', title: 'V-I Characteristic of a Current-Carrying Wire',
+      description: 'Vary the applied voltage and resistance to study the current–voltage relationship of an ohmic wire.',
+      subtitle: 'Virtual circuit with live V-I characteristic graph',
+      defaults: { voltage: 10, resistance: 20 },
+      controls: [
+        { key: 'voltage', label: 'Applied voltage', min: 0.5, max: 20, step: 0.5, unit: 'V' },
+        { key: 'resistance', label: 'Wire resistance', min: 1, max: 100, step: 1, unit: 'Ω' }
+      ],
+      results: ['Current', 'Resistance', 'Power', 'Conductance'],
+      theory: 'For an ohmic current-carrying wire under constant physical conditions, the potential difference is proportional to current. The slope of the V-I graph represents the resistance, while electrical power is P = VI.',
+      equations: ['V = IR', 'I = V/R', 'P = VI = I²R = V²/R', 'Slope of V-I graph = R'],
+      footer: 'Model assumption: the wire remains ohmic and its temperature is effectively constant during the measurement.'
+    },
+    prism: {
+      icon: '🔺', tag: 'Optics', title: 'Prism / Minimum Deviation',
+      description: 'Send a ray through a triangular prism and observe refraction, deviation, and the minimum-deviation condition.',
+      subtitle: 'Ray tracing through a prism with deviation analysis',
+      defaults: { prismAngle: 60, refractiveIndex: 1.50, incidence: 45 },
+      controls: [
+        { key: 'prismAngle', label: 'Prism angle A', min: 20, max: 80, step: 1, unit: '°' },
+        { key: 'refractiveIndex', label: 'Refractive index n', min: 1.10, max: 2.00, step: 0.01, unit: '' },
+        { key: 'incidence', label: 'Angle of incidence i', min: 5, max: 89, step: 1, unit: '°' }
+      ],
+      results: ['Deviation angle', 'Critical angle', 'Minimum deviation', 'Refracted angle r₁'],
+      theory: 'A light ray entering a prism refracts at the first face and again at the second face. The angular deviation δ depends on the prism angle and the incidence angle. At minimum deviation the optical path is symmetric, so i = e and r₁ = r₂.',
+      equations: ['r₁ = sin⁻¹(sin i / n)', 'r₂ = A − r₁', 'e = sin⁻¹(n sin r₂)', 'δ = i + e − A', 'n = sin[(A + δₘ)/2] / sin(A/2) at minimum deviation'],
+      footer: 'The ray diagram is schematic. The model uses Snell’s law and marks total internal reflection if the second-face exit condition is not satisfied.'
+    },
+    ydse: {
+      icon: '🌈', tag: 'Wave Optics', title: "Young's Double-Slit Experiment",
+      description: 'Change wavelength, slit separation, slit width, and screen distance to watch interference fringes form inside a diffraction envelope.',
+      subtitle: 'Two coherent slits with visible interference + diffraction pattern',
+      defaults: { wavelength: 600, slitSeparation: 0.50, screenDistance: 2.0, slitWidth: 0.08 },
+      controls: [
+        { key: 'wavelength', label: 'Wavelength', min: 350, max: 750, step: 10, unit: 'nm' },
+        { key: 'slitSeparation', label: 'Slit separation', min: 0.10, max: 1.00, step: 0.01, unit: 'mm' },
+        { key: 'screenDistance', label: 'Screen distance', min: 0.5, max: 5, step: 0.1, unit: 'm' },
+        { key: 'slitWidth', label: 'Individual slit width', min: 0.02, max: 0.20, step: 0.01, unit: 'mm' }
+      ],
+      results: ['Fringe width β', 'Central diffraction width', 'Slit separation', 'Wavelength'],
+      theory: 'Young’s double-slit experiment combines two coherent-source interference with single-slit diffraction. Fine bright and dark fringes appear inside a broader diffraction envelope produced by the finite width of each slit.',
+      equations: ['β = λD/d', 'Diffraction envelope = [sin(πay/λD)/(πay/λD)]²', 'I(y) ∝ sinc²(πay/λD) cos²(πdy/λD)', 'Central diffraction width ≈ 2λD/a'],
+      footer: 'The visual contrast is enhanced so the fine interference fringes and broad diffraction envelope remain obvious on a laptop display.'
+    },
+    thermo: {
+      icon: '🌡️', tag: 'Thermodynamics', title: 'Thermodynamic Process: Isothermal vs Adiabatic',
+      description: 'Compare how an ideal gas pressure changes during controlled expansion or compression on a P-V diagram.',
+      subtitle: 'Interactive piston-cylinder model with live P-V curve',
+      defaults: { process: 'isothermal', moles: 1, temperature: 300, gamma: 1.40, volume2: 0.040 },
+      controls: [
+        { key: 'process', type: 'select', label: 'Process', options: [['isothermal','Isothermal'],['adiabatic','Adiabatic']] },
+        { key: 'moles', label: 'Amount of gas', min: 0.5, max: 2, step: 0.1, unit: 'mol' },
+        { key: 'temperature', label: 'Initial temperature', min: 200, max: 600, step: 10, unit: 'K' },
+        { key: 'gamma', label: 'Heat-capacity ratio γ', min: 1.20, max: 1.67, step: 0.01, unit: '' },
+        { key: 'volume2', label: 'Final volume', min: 0.010, max: 0.080, step: 0.001, unit: 'm³' }
+      ],
+      results: ['Final pressure', 'Work done', 'Heat transfer Q', 'Final temperature'],
+      theory: 'An isothermal process keeps temperature constant, so an ideal gas follows PV = constant. In an adiabatic process there is no heat exchange, so PV^γ = constant. The P-V curves show why the adiabatic pressure falls faster during expansion.',
+      equations: ['Isothermal: PV = constant', 'Adiabatic: PV^γ = constant', 'Isothermal work: W = nRT ln(V₂/V₁)', 'Adiabatic work: W = (P₁V₁ − P₂V₂)/(γ − 1)', 'First law: ΔQ = ΔU + W'],
+      footer: 'Ideal-gas model. Work is positive for expansion. The piston animation is schematic and intended to visualize the thermodynamic state change.'
     }
   };
 
@@ -161,36 +223,54 @@
 
   function renderControls(sim) {
     const container = $('#controlsContainer');
-    container.innerHTML = sim.controls.map((c) => `
-      <div class="control-group">
-        <div class="control-label">
-          <span>${c.label}</span>
-          <span id="value-${c.key}" class="value-pill"></span>
-        </div>
-        <input class="sim-range" type="range" min="${c.min}" max="${c.max}" step="${c.step}" value="${sim.defaults[c.key]}" data-key="${c.key}" aria-label="${c.label}" />
-        <div style="display:flex;justify-content:space-between;margin-top:5px;color:var(--muted);font-size:10px;">
-          <span>${c.min}${c.unit}</span><span>${c.max}${c.unit}</span>
-        </div>
-      </div>
-    `).join('');
-    $$('.sim-range', container).forEach(input => {
-      input.addEventListener('input', () => {
+    container.innerHTML = sim.controls.map((c) => {
+      if (c.type === 'select') {
+        return `
+          <div class="control-group">
+            <div class="control-label"><span>${c.label}</span><span id="value-${c.key}" class="value-pill"></span></div>
+            <select class="sim-select control-select" data-key="${c.key}" aria-label="${c.label}">
+              ${c.options.map(([value,label]) => `<option value="${value}" ${sim.defaults[c.key] === value ? 'selected' : ''}>${label}</option>`).join('')}
+            </select>
+          </div>`;
+      }
+      return `
+        <div class="control-group">
+          <div class="control-label">
+            <span>${c.label}</span>
+            <span id="value-${c.key}" class="value-pill"></span>
+          </div>
+          <input class="sim-range" type="range" min="${c.min}" max="${c.max}" step="${c.step}" value="${sim.defaults[c.key]}" data-key="${c.key}" aria-label="${c.label}" />
+          <div style="display:flex;justify-content:space-between;margin-top:5px;color:var(--muted);font-size:10px;">
+            <span>${c.min}${c.unit}</span><span>${c.max}${c.unit}</span>
+          </div>
+        </div>`;
+    }).join('');
+
+    $$('.sim-range, .control-select', container).forEach(input => {
+      const handler = () => {
         const key = input.dataset.key;
-        app.params[key] = Number(input.value);
+        const control = sim.controls.find(c => c.key === key);
+        app.params[key] = control?.type === 'select' ? input.value : Number(input.value);
         updateControlLabels(sim);
         validateParams();
         resetSimulation(false);
         drawCurrent();
-      });
+      };
+      input.addEventListener('input', handler);
+      input.addEventListener('change', handler);
     });
     updateControlLabels(sim);
   }
-
   function updateControlLabels(sim) {
     sim.controls.forEach(c => {
       const el = $(`#value-${c.key}`);
       if (!el) return;
       const v = app.params[c.key];
+      if (c.type === 'select') {
+        const option = c.options.find(([value]) => value === v);
+        el.textContent = option ? option[1] : String(v);
+        return;
+      }
       const d = c.step < .1 ? 2 : (Number.isInteger(c.step) ? 0 : 1);
       el.textContent = `${fmt(v, d)}${c.unit ? ` ${c.unit}` : ''}`;
     });
@@ -210,6 +290,9 @@
     }
     if (app.current === 'doppler' && app.params.sourceV >= app.params.soundV) {
       message = 'Source velocity must remain below the speed of sound in this model.';
+    }
+    if (app.current === 'prism' && app.params.refractiveIndex <= 1) {
+      message = 'Prism refractive index should be greater than 1.';
     }
     $('#validationMessage').textContent = message;
     $('#startButton').disabled = Boolean(message);
@@ -274,13 +357,15 @@
   function graphTitleFor(key) {
     return ({
       projectile: 'Height vs. horizontal distance', optical: 'Ray height / propagation view', shm: 'Displacement vs. time',
-      pendulum: 'Angular displacement vs. time', induction: 'Induced EMF vs. time', doppler: 'Wavefront spacing over time'
+      pendulum: 'Angular displacement vs. time', induction: 'Induced EMF vs. time', doppler: 'Observed frequency vs. source velocity',
+      viwire: 'Voltage vs. current', prism: 'Deviation vs. incidence angle', ydse: 'Interference intensity across screen', thermo: 'Pressure vs. volume'
     })[key];
   }
   function graphLegendFor(key) {
     const labels = {
       projectile: [['Height', COLORS.accent]], shm: [['Displacement', COLORS.accent]], pendulum: [['Angle', COLORS.accent2]],
-      induction: [['EMF', COLORS.warn]], doppler: [['Wavefronts', COLORS.accent]], optical: [['Ray', COLORS.accent]]
+      induction: [['EMF', COLORS.warn]], doppler: [['Observed frequency', COLORS.accent]], optical: [['Ray', COLORS.accent]],
+      viwire: [['V-I', COLORS.accent]], prism: [['Deviation', COLORS.accent2]], ydse: [['Intensity', COLORS.warn]], thermo: [['P-V', COLORS.success]]
     };
     return (labels[key] || []).map(([name, color]) => `<span class="legend-item"><span class="legend-dot" style="background:${color}"></span>${name}</span>`).join('');
   }
@@ -356,7 +441,15 @@
     } else if (key === 'optical') {
       const p = opticalState(); app.history.push({ x: p.pathDistance, y: p.currentY });
     } else if (key === 'doppler') {
-      app.history.push({ x: app.t, y: dopplerState().wavelengthObserved });
+      app.history.push({ x: app.t, y: dopplerState().wavelength });
+    } else if (key === 'viwire') {
+      const p = viWireState(); app.history.push({ x: p.current, y: p.V });
+    } else if (key === 'prism') {
+      const p = prismState(); if (Number.isFinite(p.deviation)) app.history.push({ x: p.incidence, y: p.deviation });
+    } else if (key === 'ydse') {
+      app.history.push({ x: app.t, y: ydseIntensity(0, app.params.wavelength, app.params.slitSeparation, app.params.screenDistance, app.params.slitWidth) });
+    } else if (key === 'thermo') {
+      const p = thermoState(app.t); app.history.push({ x: p.volume, y: p.pressure });
     }
     if (app.history.length > 320) app.history.shift();
   }
@@ -448,6 +541,68 @@
     return { observed, wavelength, frontSpacing, backSpacing };
   }
 
+  function viWireState() {
+    const V = app.params.voltage;
+    const R = Math.max(0.1, app.params.resistance);
+    const I = V / R;
+    return { V, R, I, P: V * I, G: 1 / R, current: I };
+  }
+
+  function prismStateRaw(iDeg, ADeg, n) {
+    const A = ADeg * deg;
+    const i = iDeg * deg;
+    const r1 = Math.asin(clamp(Math.sin(i) / n, -1, 1));
+    const r2 = A - r1;
+    if (r2 < 0) return { deviation: NaN, eDeg: NaN, r1Deg:r1*radToDeg, r2Deg:r2*radToDeg };
+    const internalSin = n * Math.sin(r2);
+    if (internalSin > 1) return { deviation: NaN, eDeg: NaN, r1Deg:r1*radToDeg, r2Deg:r2*radToDeg };
+    const e = Math.asin(clamp(internalSin, -1, 1));
+    return { deviation: iDeg + e * radToDeg - ADeg, eDeg:e*radToDeg, r1Deg:r1*radToDeg, r2Deg:r2*radToDeg };
+  }
+
+  function prismState(incidenceOverride = null) {
+    const Adeg=app.params.prismAngle, A=Adeg*deg, n=app.params.refractiveIndex;
+    const incidence=incidenceOverride == null ? app.params.incidence : incidenceOverride;
+    const q=prismStateRaw(incidence,Adeg,n);
+    let minDeviation=Infinity;
+    for(let i=5;i<=89;i+=0.5){ const r=prismStateRaw(i,Adeg,n); if(Number.isFinite(r.deviation)) minDeviation=Math.min(minDeviation,r.deviation); }
+    const critical=Math.asin(clamp(1/n,-1,1))*radToDeg;
+    return { A, Adeg, n, incidence, critical, deviation:q.deviation, eDeg:q.eDeg, r1Deg:q.r1Deg, r2Deg:q.r2Deg, tir:!Number.isFinite(q.deviation), minDeviation:Number.isFinite(minDeviation)?minDeviation:NaN };
+  }
+
+  function ydseState() {
+    const lambda=app.params.wavelength*1e-9;
+    const d=app.params.slitSeparation*1e-3;
+    const D=app.params.screenDistance;
+    const a=app.params.slitWidth*1e-3;
+    const fringeWidth=lambda*D/d;
+    const firstDiffractionZero=lambda*D/a;
+    const centralDiffractionWidth=2*firstDiffractionZero;
+    return { lambda, d, D, a, fringeWidth, firstDiffractionZero, centralDiffractionWidth };
+  }
+
+  function ydseIntensity(y, wavelengthNm, dMm, D, aMm=0.08) {
+    const lambda=wavelengthNm*1e-9, d=dMm*1e-3, a=aMm*1e-3;
+    const beta=Math.PI*a*y/Math.max(lambda*D,1e-18);
+    const alpha=Math.PI*d*y/Math.max(lambda*D,1e-18);
+    const envelope=Math.abs(beta)<1e-8 ? 1 : (Math.sin(beta)/beta)**2;
+    return clamp(envelope*(Math.cos(alpha)**2),0,1);
+  }
+
+  const R_GAS=8.314;
+  function thermoState(t) {
+    const n=app.params.moles, T1=app.params.temperature, gamma=app.params.gamma, V1=0.010, V2=Math.max(0.011,app.params.volume2);
+    const phase=0.5*(1-Math.cos(t*0.75)), V=V1+(V2-V1)*phase;
+    const P1=n*R_GAS*T1/V1, process=app.params.process;
+    const P=process==='adiabatic'?P1*Math.pow(V1/V,gamma):P1*V1/V;
+    const T=process==='adiabatic'?T1*Math.pow(V1/V,gamma-1):T1;
+    const finalP=process==='adiabatic'?P1*Math.pow(V1/V2,gamma):P1*V1/V2;
+    const finalT=process==='adiabatic'?T1*Math.pow(V1/V2,gamma-1):T1;
+    const W=process==='adiabatic'?(P1*V1-finalP*V2)/(gamma-1):n*R_GAS*T1*Math.log(V2/V1);
+    const Q=process==='adiabatic'?0:W;
+    return {n,T1,gamma,V1,V2,P1,V,P,volume:V,pressure:P,temperature:T,finalP,finalT,work:W,heat:Q,currentWork:W};
+  }
+
   // ---------- Drawing helpers ----------
 
   function prepareCanvases() {
@@ -506,6 +661,10 @@
         case 'pendulum': drawPendulum(ctx,w,h); break;
         case 'induction': drawInduction(ctx,w,h); break;
         case 'doppler': drawDoppler(ctx,w,h); break;
+        case 'viwire': drawVIWire(ctx,w,h); break;
+        case 'prism': drawPrism(ctx,w,h); break;
+        case 'ydse': drawYDSE(ctx,w,h); break;
+        case 'thermo': drawThermo(ctx,w,h); break;
       }
       drawGraph();
     } catch (err) {
@@ -841,50 +1000,345 @@
     setResult(0,fmtSmart(d.observed),'Hz'); setResult(1,fmt(1/app.params.frequency,4),'s'); setResult(2,fmt(d.wavelength,2),'m'); setResult(3,app.params.sourceV>0?'Source approaching observer':'Stationary source');
   }
 
-  function drawGraph() {
-    const {ctx,w,h}=fitCanvas(app.graph); clearCanvas(ctx,w,h);
-    const key=app.current; if(!key)return;
-    const pad={l:58,r:22,t:24,b:42};
-    ctx.strokeStyle='#48566c';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(pad.l,pad.t);ctx.lineTo(pad.l,h-pad.b);ctx.lineTo(w-pad.r,h-pad.b);ctx.stroke();
-    let points=[]; let xLabel='Time'; let yLabel='Value';
-    if(key==='projectile'){
-      const p=projectileState(Math.min(app.t,projectileState(0).T));
-      const u=app.params.u, a=app.params.angle*deg,g=app.params.g,T=2*u*Math.sin(a)/g;
-      for(let i=0;i<140;i++){const t=T*i/139;const x=u*Math.cos(a)*t;const y=Math.max(0,u*Math.sin(a)*t-.5*g*t*t);points.push({x,y});} xLabel='Horizontal distance (m)';yLabel='Height (m)';
-      drawLineGraph(ctx,w,h,points,COLORS.accent, p.x, p.y, 0, p.R, 0, p.H, pad,xLabel,yLabel);
-    } else if(key==='shm'){
-      const p=shmState(0); const span=Math.max(4,p.T*3); for(let i=0;i<200;i++){const t=span*i/199;points.push({x:t,y:app.params.amp*Math.cos(p.omega*t)});} const currentX=app.t%span,currentY=app.params.amp*Math.cos(p.omega*currentX); drawLineGraph(ctx,w,h,points,COLORS.accent,currentX,currentY,0,span,-app.params.amp,app.params.amp,pad,'Time (s)','Displacement (m)');
-    } else if(key==='pendulum'){
-      const p=pendulumState(0);const span=Math.max(5,p.T*3);for(let i=0;i<200;i++){const t=span*i/199;points.push({x:t,y:pendulumState(t).thetaDeg});}const cx=app.t%span,cy=pendulumState(cx).thetaDeg;drawLineGraph(ctx,w,h,points,COLORS.accent2,cx,cy,0,span,-app.params.angle,app.params.angle,pad,'Time (s)','Angle (°)');
-    } else if(key==='induction'){
-      const span=8;for(let i=0;i<220;i++){const t=span*i/219;points.push({x:t,y:inductionState(t).emf});}const cx=app.t%span,cy=inductionState(cx).emf;let ys=points.map(p=>Math.abs(p.y));const ym=Math.max(.1,Math.max(...ys)*1.1);drawLineGraph(ctx,w,h,points,COLORS.warn,cx,cy,0,span,-ym,ym,pad,'Time (s)','Induced EMF (V)');
-    } else if(key==='optical'){
-      const s=opticalState(); const n=220;
-      const amp=.82;
-      if(s.tir){
-        for(let i=0;i<n;i++){
-          const q=i/(n-1);
-          const tri=2*Math.abs(2*(q*4-Math.floor(q*4+.5)))-1;
-          points.push({x:q,y:tri*amp});
-        }
-        const q=s.progress; const tri=2*Math.abs(2*(q*4-Math.floor(q*4+.5)))-1;
-        drawLineGraph(ctx,w,h,points,COLORS.accent,s.progress,tri*amp,0,1,-1,1,pad,'Normalized propagation','Schematic ray height');
-      } else {
-        for(let i=0;i<n;i++){const q=i/(n-1);points.push({x:q,y:-.78*q});}
-        drawLineGraph(ctx,w,h,points,COLORS.danger,s.progress,-.78*s.progress,0,1,-1,1,pad,'Normalized propagation','Ray height');
-      }
-    } else if(key==='doppler'){
-      const d=dopplerState();const span=6;for(let i=0;i<180;i++){const t=span*i/179;points.push({x:t,y:d.wavelength});}drawLineGraph(ctx,w,h,points,COLORS.accent,app.t%span,d.wavelength,0,span,0,Math.max(.1,d.wavelength*1.5),pad,'Time (s)','Wavelength (m)');
+  function drawVIWire(ctx,w,h) {
+    const p=viWireState();
+    const yTop=h*.43, railY=h*.80, left=86, right=w-76;
+    const wireStart=365, wireEnd=800;
+    const currentMax=20/Math.max(p.R,1);
+    const currentNorm=clamp(p.I/Math.max(currentMax,0.01),0,1);
+    const heat=clamp(p.P/140,0,1);
+
+    // Presentation header
+    ctx.fillStyle='rgba(101,213,255,.08)';ctx.roundRect(24,20,370,58,14);ctx.fill();
+    text(ctx,'OHMIC WIRE • V–I EXPERIMENT',44,40,12,COLORS.accent,'left','900');
+    text(ctx,'Animated charge flow • live operating point',44,61,10,COLORS.muted,'left','700');
+
+    // Main circuit rails
+    ctx.strokeStyle='#62738b';ctx.lineWidth=4;ctx.lineJoin='round';ctx.beginPath();
+    ctx.moveTo(left+55,yTop);ctx.lineTo(w*.27,yTop);ctx.lineTo(w*.34,yTop);ctx.lineTo(w*.66,yTop);ctx.lineTo(w*.73,yTop);ctx.lineTo(right,yTop);ctx.lineTo(right,railY);ctx.lineTo(left+55,railY);ctx.lineTo(left+55,yTop);ctx.stroke();
+
+    // Battery / power supply
+    const bx=left+55, by=(yTop+railY)/2;
+    ctx.strokeStyle=COLORS.warn;ctx.lineWidth=7;ctx.beginPath();ctx.moveTo(bx-20,by-30);ctx.lineTo(bx+20,by-30);ctx.moveTo(bx-12,by+5);ctx.lineTo(bx+12,by+5);ctx.stroke();
+    text(ctx,'DC SUPPLY',bx,by+34,10,COLORS.warn,'center','900');
+    text(ctx,`${fmt(p.V,1)} V`,bx,by+52,10,COLORS.muted,'center','800');
+
+    // Ammeter
+    const ax=w*.31;
+    ctx.fillStyle='rgba(99,230,190,.08)';ctx.beginPath();ctx.arc(ax,yTop,45,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle=COLORS.success;ctx.lineWidth=3;ctx.beginPath();ctx.arc(ax,yTop,45,0,Math.PI*2);ctx.stroke();
+    text(ctx,'A',ax,yTop-4,20,COLORS.success,'center','900');
+    text(ctx,`${fmt(p.I,3)} A`,ax,yTop+62,11,COLORS.success,'center','900');
+
+    // Test wire: glow increases with dissipated power
+    ctx.strokeStyle=`rgba(255,125,142,${0.10+0.32*heat})`;ctx.lineWidth=30;ctx.beginPath();ctx.moveTo(wireStart,yTop);ctx.lineTo(wireEnd,yTop);ctx.stroke();
+    ctx.strokeStyle=COLORS.accent;ctx.lineWidth=9;ctx.beginPath();ctx.moveTo(wireStart,yTop);ctx.lineTo(wireEnd,yTop);ctx.stroke();
+    text(ctx,'CURRENT-CARRYING TEST WIRE', (wireStart+wireEnd)/2, yTop-45,13,COLORS.text,'center','900');
+    text(ctx,`R = ${fmt(p.R,1)} Ω   •   P = ${fmt(p.P,2)} W`, (wireStart+wireEnd)/2, yTop+38,11,COLORS.muted,'center','800');
+
+    // Animated charge carriers
+    const speed=0.35+1.4*currentNorm;
+    for(let i=0;i<12;i++){
+      const q=((app.t*speed+i/12)%1), ex=wireStart+(wireEnd-wireStart)*q;
+      ctx.fillStyle=COLORS.white;ctx.beginPath();ctx.arc(ex,yTop,4.3,0,Math.PI*2);ctx.fill();
+      if(i%3===0){ctx.strokeStyle='rgba(99,230,190,.75)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(ex-14,yTop+17);ctx.lineTo(ex+10,yTop+17);ctx.stroke();ctx.fillStyle=COLORS.success;ctx.beginPath();ctx.moveTo(ex+10,yTop+17);ctx.lineTo(ex+1,yTop+12);ctx.lineTo(ex+1,yTop+22);ctx.closePath();ctx.fill();}
     }
+
+    // Voltmeter connected across the test wire
+    const vx=w*.73, vy=railY-56;
+    ctx.strokeStyle='#64758c';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(wireStart,yTop);ctx.lineTo(vx,yTop);ctx.lineTo(vx,vy-45);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(wireEnd,yTop);ctx.lineTo(vx,yTop);ctx.stroke();
+    ctx.fillStyle='rgba(255,209,102,.08)';ctx.beginPath();ctx.arc(vx,vy,44,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle=COLORS.warn;ctx.lineWidth=3;ctx.beginPath();ctx.arc(vx,vy,44,0,Math.PI*2);ctx.stroke();
+    text(ctx,'V',vx,vy-4,20,COLORS.warn,'center','900');
+    text(ctx,`${fmt(p.V,2)} V`,vx,vy+61,11,COLORS.warn,'center','900');
+
+    // Live result panel
+    ctx.fillStyle='rgba(8,12,19,.78)';ctx.roundRect(w-315,18,288,92,14);ctx.fill();
+    text(ctx,'LIVE MEASUREMENT',w-295,39,10,COLORS.muted,'left','900');
+    text(ctx,`I = ${fmt(p.I,3)} A`,w-47,62,18,COLORS.accent,'right','900');
+    text(ctx,`V = ${fmt(p.V,2)} V`,w-47,88,12,COLORS.warn,'right','800');
+
+    text(ctx,'Ohm’s law:  V = IR',28,h-65,13,COLORS.text,'left','900');
+    text(ctx,'Change V → the operating point moves.  Change R → the slope changes.',28,h-40,11,COLORS.muted,'left');
+
+    setResult(0,fmt(p.I,3),'A');setResult(1,fmt(p.R,1),'Ω');setResult(2,fmt(p.P,2),'W');setResult(3,fmt(p.G,4),'S');
   }
 
-  function drawLineGraph(ctx,w,h,points,color,cx,cy,xmin,xmax,ymin,ymax,pad,xLabel,yLabel){
-    const sx=x=>pad.l+(x-xmin)/(xmax-xmin)*(w-pad.l-pad.r);const sy=y=>h-pad.b-(y-ymin)/(ymax-ymin)*(h-pad.t-pad.b);
-    ctx.strokeStyle=COLORS.grid;ctx.lineWidth=1;for(let i=0;i<=5;i++){const xx=pad.l+(w-pad.l-pad.r)*i/5;ctx.beginPath();ctx.moveTo(xx,pad.t);ctx.lineTo(xx,h-pad.b);ctx.stroke();const yy=pad.t+(h-pad.t-pad.b)*i/5;ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(w-pad.r,yy);ctx.stroke();}
-    ctx.strokeStyle=color;ctx.lineWidth=3;ctx.beginPath();points.forEach((p,i)=>{const xx=sx(p.x),yy=sy(p.y);if(i===0)ctx.moveTo(xx,yy);else ctx.lineTo(xx,yy);});ctx.stroke();
-    const safeX=clamp(cx,xmin,xmax),safeY=clamp(cy,ymin,ymax);ctx.fillStyle=color;ctx.beginPath();ctx.arc(sx(safeX),sy(safeY),5.5,0,Math.PI*2);ctx.fill();
-    text(ctx,xLabel,(pad.l+w-pad.r)/2,h-17,10,COLORS.muted,'center');
-    ctx.save();ctx.translate(15,(pad.t+h-pad.b)/2);ctx.rotate(-Math.PI/2);text(ctx,yLabel,0,0,10,COLORS.muted,'center');ctx.restore();
+  function drawPrism(ctx,w,h) {
+    const p=prismState();
+    const height=Math.min(h*.50,300);
+    const baseY=h*.76;
+    const apexX=w*.56;
+    const halfBase=Math.min(w*.19,Math.max(88,height*Math.tan((p.Adeg*deg)/2)));
+    const L={x:apexX-halfBase,y:baseY}, A={x:apexX,y:baseY-height}, R={x:apexX+halfBase,y:baseY};
+    const leftFaceAngle=Math.atan2(A.y-L.y,A.x-L.x);
+    const normalIn=leftFaceAngle+Math.PI/2;
+    const entry={x:L.x+(A.x-L.x)*.50,y:L.y+(A.y-L.y)*.50};
+    const dirIn={x:Math.cos(normalIn-p.incidence*deg),y:Math.sin(normalIn-p.incidence*deg)};
+    const r1=p.r1Deg*deg;
+    const dirInside={x:Math.cos(normalIn-r1),y:Math.sin(normalIn-r1)};
+    const rightFaceAngle=Math.atan2(R.y-A.y,R.x-A.x);
+    const normalOut=rightFaceAngle-Math.PI/2;
+    const dirOut=Number.isFinite(p.eDeg)?{x:Math.cos(normalOut+p.eDeg*deg),y:Math.sin(normalOut+p.eDeg*deg)}:null;
+
+    const cross=(u,v)=>u.x*v.y-u.y*v.x;
+    function hitRaySegment(p0,d,a,b){
+      const e={x:b.x-a.x,y:b.y-a.y}, den=cross(d,e);if(Math.abs(den)<1e-10)return null;
+      const ap={x:a.x-p0.x,y:a.y-p0.y};const t=cross(ap,e)/den,u=cross(ap,d)/den;
+      return (t>=0&&u>=0&&u<=1)?{x:p0.x+t*d.x,y:p0.y+t*d.y}:null;
+    }
+    let exit=hitRaySegment(entry,dirInside,A,R);
+    if(!exit) exit={x:A.x+(R.x-A.x)*.62,y:A.y+(R.y-A.y)*.62};
+    const startIn={x:entry.x-dirIn.x*310,y:entry.y-dirIn.y*310};
+
+    // Dynamic prism body: both A and ray geometry react to controls.
+    ctx.fillStyle='rgba(154,123,255,.13)';ctx.beginPath();ctx.moveTo(L.x,L.y);ctx.lineTo(A.x,A.y);ctx.lineTo(R.x,R.y);ctx.closePath();ctx.fill();
+    ctx.strokeStyle='rgba(154,123,255,.85)';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(L.x,L.y);ctx.lineTo(A.x,A.y);ctx.lineTo(R.x,R.y);ctx.closePath();ctx.stroke();
+    ctx.fillStyle='rgba(101,213,255,.06)';ctx.beginPath();ctx.moveTo(L.x+13,L.y-8);ctx.lineTo(A.x,A.y+18);ctx.lineTo(R.x-13,R.y-8);ctx.closePath();ctx.fill();
+
+    // Base and prism-angle indicator
+    ctx.strokeStyle='rgba(255,255,255,.15)';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(L.x-35,baseY);ctx.lineTo(R.x+35,baseY);ctx.stroke();
+    ctx.strokeStyle=COLORS.warn;ctx.lineWidth=2.5;ctx.beginPath();ctx.arc(A.x,A.y+2,45,Math.PI/2,Math.PI/2 + p.Adeg*deg);ctx.stroke();
+    text(ctx,`A = ${fmt(p.Adeg,0)}°`,A.x,A.y+57,11,COLORS.warn,'center','900');
+
+    // Rays
+    ctx.strokeStyle=COLORS.warn;ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(startIn.x,startIn.y);ctx.lineTo(entry.x,entry.y);ctx.stroke();
+    ctx.strokeStyle=COLORS.accent;ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(entry.x,entry.y);ctx.lineTo(exit.x,exit.y);ctx.stroke();
+    ctx.strokeStyle=p.tir?COLORS.danger:COLORS.success;ctx.lineWidth=4;ctx.beginPath();
+    if(p.tir){ctx.setLineDash([8,6]);ctx.moveTo(exit.x,exit.y);ctx.lineTo(exit.x+90,exit.y+55);ctx.stroke();ctx.setLineDash([]);} else {ctx.moveTo(exit.x,exit.y);ctx.lineTo(exit.x+dirOut.x*260,exit.y+dirOut.y*260);ctx.stroke();}
+
+    // Normals show the incidence geometry changing on screen
+    ctx.strokeStyle='rgba(255,209,102,.48)';ctx.lineWidth=1.5;ctx.setLineDash([6,5]);ctx.beginPath();ctx.moveTo(entry.x-dirIn.x*62,entry.y-dirIn.y*62);ctx.lineTo(entry.x+dirIn.x*62,entry.y+dirIn.y*62);ctx.stroke();
+    ctx.strokeStyle='rgba(99,230,190,.4)';ctx.beginPath();ctx.moveTo(exit.x-Math.cos(normalOut)*62,exit.y-Math.sin(normalOut)*62);ctx.lineTo(exit.x+Math.cos(normalOut)*62,exit.y+Math.sin(normalOut)*62);ctx.stroke();ctx.setLineDash([]);
+
+    text(ctx,`i = ${fmt(p.incidence,1)}°`,Math.max(45,entry.x-105),entry.y-25,11,COLORS.warn,'center','900');
+    text(ctx,`r₁ = ${fmt(p.r1Deg,2)}°`,entry.x+67,entry.y-22,11,COLORS.accent,'center','900');
+    if(!p.tir) text(ctx,`e = ${fmt(p.eDeg,2)}°`,Math.min(w-80,exit.x+83),exit.y-20,11,COLORS.success,'center','900');
+    text(ctx,p.tir?'TOTAL INTERNAL REFLECTION':'EMERGENT RAY',Math.min(w-155,exit.x+140),exit.y+30,12,p.tir?COLORS.danger:COLORS.success,'center','900');
+
+    ctx.fillStyle='rgba(8,12,19,.78)';ctx.roundRect(w-315,18,288,96,14);ctx.fill();
+    text(ctx,'LIVE PRISM GEOMETRY',w-295,40,10,COLORS.muted,'left','900');
+    text(ctx,`A = ${fmt(p.Adeg,0)}°   i = ${fmt(p.incidence,1)}°`,w-45,64,13,COLORS.text,'right','900');
+    text(ctx,`δ = ${Number.isFinite(p.deviation)?fmt(p.deviation,2)+'°':'TIR'}`,w-45,90,12,COLORS.accent,'right','800');
+
+    setResult(0,Number.isFinite(p.deviation)?fmt(p.deviation,2):'TIR','°');setResult(1,fmt(p.critical,2),'°');setResult(2,fmt(p.minDeviation,2),'°');setResult(3,fmt(p.r1Deg,2),'°');
+  }
+
+  function drawYDSE(ctx,w,h) {
+    const p=ydseState(), mid=h*.52, slitX=235, screenX=w-172, top=mid-208, bottom=mid+208;
+    const screenHalfPhysical=Math.max(p.firstDiffractionZero*1.35,p.fringeWidth*7.5);
+
+    ctx.fillStyle='rgba(255,209,102,.14)';ctx.beginPath();ctx.roundRect(32,mid-27,115,54,12);ctx.fill();
+    text(ctx,'LASER',90,mid,11,COLORS.warn,'center','900');
+    ctx.strokeStyle=COLORS.accent;ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(147,mid);ctx.lineTo(slitX-18,mid);ctx.stroke();
+    ctx.fillStyle='#1d2738';ctx.fillRect(slitX-10,mid-125,20,250);ctx.fillStyle=COLORS.white;ctx.fillRect(slitX-10,mid-31,20,11);ctx.fillRect(slitX-10,mid+20,20,11);
+    text(ctx,'S₁',slitX+24,mid-26,11,COLORS.muted,'left','800');text(ctx,'S₂',slitX+24,mid+27,11,COLORS.muted,'left','800');
+
+    // Expanding wavefronts after each finite-width slit
+    for(let r=1;r<=8;r++){
+      const rr=20+r*14+((app.t*32)%14);
+      const alpha=Math.max(.03,.17-.016*r);
+      ctx.strokeStyle=`rgba(101,213,255,${alpha})`;ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.arc(slitX,mid-25,rr,-Math.PI*.49,Math.PI*.49);ctx.stroke();
+      ctx.beginPath();ctx.arc(slitX,mid+25,rr,-Math.PI*.49,Math.PI*.49);ctx.stroke();
+    }
+    text(ctx,'DIFFRACTION AT EACH SLIT',slitX+125,mid-160,10,COLORS.accent,'center','800');
+
+    // Bright/dark screen pattern generated from interference × diffraction.
+    ctx.fillStyle='#0d1320';ctx.fillRect(screenX,top,58,bottom-top);
+    const bands=420;
+    for(let i=0;i<bands;i++){
+      const yy=top+(bottom-top)*(i+.5)/bands;
+      const physicalY=((yy-mid)/(bottom-top))*2*screenHalfPhysical;
+      const I=ydseIntensity(physicalY,p.lambda*1e9,p.d*1e3,p.D,p.a*1e3);
+      ctx.fillStyle=`rgba(248,250,255,${.035+.965*I})`;ctx.fillRect(screenX+2,yy,54,(bottom-top)/bands+1);
+    }
+    ctx.strokeStyle=COLORS.warn;ctx.lineWidth=3;ctx.strokeRect(screenX,top,58,bottom-top);
+
+    // Broad diffraction envelope outline
+    ctx.strokeStyle='rgba(154,123,255,.78)';ctx.lineWidth=2.2;ctx.setLineDash([8,5]);ctx.beginPath();
+    for(let i=0;i<=160;i++){
+      const q=i/160, physicalY=-screenHalfPhysical+2*screenHalfPhysical*q;
+      const beta=Math.PI*p.a*physicalY/(p.lambda*p.D);
+      const env=Math.abs(beta)<1e-8?1:(Math.sin(beta)/beta)**2;
+      const yy=mid+(physicalY/(2*screenHalfPhysical))*(bottom-top);
+      const xx=screenX-16-env*75;
+      if(i===0)ctx.moveTo(xx,yy);else ctx.lineTo(xx,yy);
+    }
+    ctx.stroke();ctx.setLineDash([]);
+
+    text(ctx,'INTERFERENCE FRINGES',screenX+29,top-22,10,COLORS.text,'center','900');
+    text(ctx,'DIFFRACTION ENVELOPE',screenX-94,top+20,10,COLORS.accent2,'center','900');
+    ctx.fillStyle='rgba(8,12,19,.78)';ctx.roundRect(w-355,18,328,82,14);ctx.fill();
+    text(ctx,'LIVE DOUBLE-SLIT PATTERN',w-335,40,10,COLORS.muted,'left','900');
+    text(ctx,`β = ${fmtSmart(p.fringeWidth)} m`,w-45,62,13,COLORS.warn,'right','900');
+    text(ctx,`central width ≈ ${fmtSmart(p.centralDiffractionWidth)} m`,w-45,84,11,COLORS.text,'right','800');
+    text(ctx,`λ ${fmt(p.lambda*1e9,0)} nm  •  d ${fmt(p.d*1e3,2)} mm  •  a ${fmt(p.a*1e3,2)} mm  •  D ${fmt(p.D,1)} m`,w*.54,h-28,10,COLORS.muted,'center');
+
+    setResult(0,fmtSmart(p.fringeWidth),'m');setResult(1,fmtSmart(p.centralDiffractionWidth),'m');setResult(2,fmt(p.d*1e3,2),'mm');setResult(3,fmt(p.lambda*1e9,0),'nm');
+  }
+
+  function drawThermo(ctx,w,h) {
+    const p=thermoState(app.t), x=90,y=100,cw=280,ch=330,base=y+ch;
+    ctx.strokeStyle='#53637a';ctx.lineWidth=4;ctx.strokeRect(x,y,cw,ch);
+    const frac=clamp((p.volume-p.V1)/(p.V2-p.V1 || 1),0,1), pistonY=base-55-frac*225;
+    ctx.fillStyle='rgba(99,230,190,.10)';ctx.fillRect(x+6,pistonY+18,cw-12,base-pistonY-22);ctx.fillStyle='#7f8da1';ctx.fillRect(x-12,pistonY,cw+24,18);
+    text(ctx,'IDEAL GAS',x+cw/2,base+26,12,COLORS.muted,'center','800');text(ctx,`V = ${fmt(p.volume,3)} m³`,x+cw/2,pistonY-20,12,COLORS.accent,'center','800');text(ctx,`P = ${fmtSmart(p.pressure)} Pa`,x+cw/2,pistonY-42,12,COLORS.warn,'center','800');
+    text(ctx,p.process==='adiabatic'?'ADIABATIC':'ISOTHERMAL',x+cw/2,y-26,13,p.process==='adiabatic'?COLORS.accent2:COLORS.success,'center','800');
+    const gx=470,gy=90,gw=w-530,gh=h-145;ctx.strokeStyle='#53637a';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(gx,gy);ctx.lineTo(gx,gy+gh);ctx.lineTo(gx+gw,gy+gh);ctx.stroke();
+    const logMin=Math.log(Math.max(1000,p.finalP*.7)),logMax=Math.log(Math.max(p.P1*1.05,logMin+10));const px=v=>gx+(v-p.V1)/(p.V2-p.V1||1)*gw;const py=P=>gy+gh-(Math.log(Math.max(P,1))-logMin)/(logMax-logMin)*(gh-20)-10;
+    ctx.strokeStyle=COLORS.success;ctx.lineWidth=3;ctx.beginPath();for(let i=0;i<160;i++){const V=p.V1+(p.V2-p.V1)*i/159;const P=p.process==='adiabatic'?p.P1*Math.pow(p.V1/V,p.gamma):p.P1*p.V1/V;const xx=px(V),yy=py(P);if(i===0)ctx.moveTo(xx,yy);else ctx.lineTo(xx,yy);}ctx.stroke();
+    ctx.fillStyle=COLORS.warn;ctx.beginPath();ctx.arc(px(p.volume),py(p.pressure),6,0,Math.PI*2);ctx.fill();
+    text(ctx,'P–V DIAGRAM',gx+gw/2,gy-28,13,COLORS.text,'center','800');text(ctx,'Volume (m³)',gx+gw/2,gy+gh+28,10,COLORS.muted,'center');ctx.save();ctx.translate(gx-26,gy+gh/2);ctx.rotate(-Math.PI/2);text(ctx,'Pressure (Pa)',0,0,10,COLORS.muted,'center');ctx.restore();
+    text(ctx,`W = ${fmtSmart(p.work)} J`,w-24,28,13,COLORS.accent,'right','800');text(ctx,`Q = ${fmtSmart(p.heat)} J`,w-24,50,11,COLORS.muted,'right');
+    setResult(0,fmtSmart(p.finalP),'Pa');setResult(1,fmtSmart(p.work),'J');setResult(2,fmtSmart(p.heat),'J');setResult(3,fmtSmart(p.finalT),'K');
+  }
+
+  function axisDecimals(step){
+    if(step>=100)return 0;if(step>=10)return 0;if(step>=1)return 1;if(step>=0.1)return 2;if(step>=0.01)return 3;return 4;
+  }
+  function niceStep(raw){
+    const r=Math.max(Math.abs(raw),1e-12), p=10**Math.floor(Math.log10(r)), n=r/p;
+    return (n<=1?1:n<=2?2:n<=5?5:10)*p;
+  }
+  function niceBounds(min,max,intervals=6){
+    if(!Number.isFinite(min)||!Number.isFinite(max)){return {min:0,max:1,step:.2};}
+    if(Math.abs(max-min)<1e-12){const s=Math.max(Math.abs(max)*.25,1);min-=s;max+=s;}
+    const step=niceStep((max-min)/intervals);
+    let lo=Math.floor(min/step)*step;
+    let hi=Math.ceil(max/step)*step;
+    if (Math.abs(lo) < step*1e-10) lo=0;
+    if (Math.abs(hi) < step*1e-10) hi=0;
+    return {min:lo,max:hi,step};
+  }
+
+  function rangeFromPoints(points, requestedMin, requestedMax, options={}){
+    const finite=points.filter(q=>Number.isFinite(q.x)&&Number.isFinite(q.y));
+    if(!finite.length) return {xmin:0,xmax:1,ymin:0,ymax:1};
+    const xs=finite.map(q=>q.x), ys=finite.map(q=>q.y);
+    let xmin=Number.isFinite(requestedMin) ? requestedMin : Math.min(...xs);
+    let xmax=Number.isFinite(requestedMax) ? requestedMax : Math.max(...xs);
+    xmin=Math.min(xmin,Math.min(...xs));
+    xmax=Math.max(xmax,Math.max(...xs));
+    let ymin=Math.min(...ys), ymax=Math.max(...ys);
+    if(options.includeYZero){ymin=Math.min(ymin,0);ymax=Math.max(ymax,0);}
+    const ySpan=Math.max(Math.abs(ymax-ymin),1e-12);
+    const xSpan=Math.max(Math.abs(xmax-xmin),1e-12);
+    if(options.padX !== false){
+      const px=Math.max(xSpan*.06, Math.abs(xmax)*.005, 1e-12);
+      xmin-=px*.25; xmax+=px*.25;
+      if(options.keepXZero && xmin>0) xmin=0;
+    }
+    if(options.padY !== false){
+      const py=Math.max(ySpan*.08, Math.abs(ymax)*.005, 1e-12);
+      ymin-=py; ymax+=py;
+      if(options.keepYZero && ymin>0) ymin=0;
+    }
+    return {xmin,xmax,ymin,ymax};
+  }
+
+  function drawGraph(){
+    const {ctx,w,h}=fitCanvas(app.graph);clearCanvas(ctx,w,h);const key=app.current;if(!key)return;
+    const pad={l:80,r:34,t:44,b:68};let points=[];let xLabel='X',yLabel='Y',color=COLORS.accent,cx=0,cy=0,xmin=0,xmax=1,ymin=0,ymax=1,extra='';
+    if(key==='projectile'){
+      const u=app.params.u,a=app.params.angle*deg,g=app.params.g,T=2*u*Math.sin(a)/g,R=u*u*Math.sin(2*a)/g,H=u*u*Math.sin(a)**2/(2*g);for(let i=0;i<180;i++){const t=T*i/179;points.push({x:u*Math.cos(a)*t,y:Math.max(0,u*Math.sin(a)*t-.5*g*t*t)});}const p=projectileState(Math.min(app.t,T));xLabel='Horizontal distance x (m)';yLabel='Height y (m)';color=COLORS.accent;cx=p.x;cy=p.y;xmin=0;xmax=R;ymin=0;ymax=H;extra=`u ${fmt(u,0)} m/s   θ ${fmt(app.params.angle,0)}°`;
+    } else if(key==='optical'){
+      const s=opticalState();for(let i=0;i<220;i++){const q=i/219;let yy;if(s.tir){const tri=2*Math.abs(2*(q*4-Math.floor(q*4+.5)))-1;yy=tri*.82;}else yy=-.78*q;points.push({x:q,y:yy});}const tri=s.tir?2*Math.abs(2*(s.progress*4-Math.floor(s.progress*4+.5)))-1:-.78*s.progress;xLabel='Normalized propagation';yLabel='Ray height (normalized)';cx=s.progress;cy=tri*(s.tir?.82:1);xmin=0;xmax=1;ymin=-1;ymax=1;extra=`θ ${fmt(app.params.theta,1)}°   θc ${fmt(s.critical,2)}°`;
+    } else if(key==='shm'){
+      const p=shmState(0),span=Math.max(4,p.T*3);for(let i=0;i<220;i++){const t=span*i/219;points.push({x:t,y:app.params.amp*Math.cos(p.omega*t)});}const t=app.t%span,q=shmState(t);xLabel='Time t (s)';yLabel='Displacement x (m)';color=COLORS.accent;cx=t;cy=q.x;xmin=0;xmax=span;ymin=-app.params.amp;ymax=app.params.amp;extra=`A ${fmt(app.params.amp,2)} m   T ${fmt(p.T,2)} s`;
+    } else if(key==='pendulum'){
+      const p=pendulumState(0),span=Math.max(5,p.T*3);for(let i=0;i<220;i++){const t=span*i/219;points.push({x:t,y:pendulumState(t).thetaDeg});}const t=app.t%span,q=pendulumState(t);xLabel='Time t (s)';yLabel='Angular displacement θ (°)';color=COLORS.accent2;cx=t;cy=q.thetaDeg;xmin=0;xmax=span;ymin=-app.params.angle;ymax=app.params.angle;extra=`L ${fmt(app.params.length,2)} m   T ${fmt(p.T,2)} s`;
+    } else if(key==='induction'){
+      const span=8;for(let i=0;i<220;i++){const t=span*i/219;points.push({x:t,y:inductionState(t).emf});}const q=inductionState(app.t%span),ys=points.map(v=>Math.abs(v.y)),ym=Math.max(.1,Math.max(...ys)*1.12);xLabel='Time t (s)';yLabel='Induced EMF ε (V)';color=COLORS.warn;cx=app.t%span;cy=q.emf;xmin=0;xmax=span;ymin=-ym;ymax=ym;extra=`N ${app.params.turns} turns   B₀ ${fmt(app.params.field,2)} T`;
+    } else if(key==='doppler'){
+      const f=app.params.frequency, vo=app.params.observerV, v=app.params.soundV, maxVs=Math.min(app.params.soundV*.88,120), current=app.params.sourceV;
+      for(let i=0;i<180;i++){const vs=maxVs*i/179;const obs=f*(v+vo)/(v-vs);points.push({x:vs,y:obs});}
+      const d=dopplerState();xLabel='Source velocity toward observer (m/s)';yLabel='Observed frequency f′ (Hz)';color=COLORS.accent;cx=current;cy=d.observed;xmin=0;xmax=maxVs*1.05;ymin=Math.max(0,f*(v+vo)/v*.90);ymax=Math.max(f*1.1,d.observed*1.10);extra=`f₀ ${fmt(f,0)} Hz   current f′ ${fmtSmart(d.observed)} Hz`;
+    } else if(key==='viwire'){
+      const R=app.params.resistance,voltageMax=20,iMax=voltageMax/R;for(let i=0;i<160;i++){const I=iMax*i/159;points.push({x:I,y:I*R});}const q=viWireState();xLabel='Current I (A)';yLabel='Voltage V (V)';color=COLORS.accent;cx=q.I;cy=q.V;xmin=0;xmax=iMax*1.08;ymin=0;ymax=voltageMax*1.08;extra=`Operating point  I=${fmt(q.I,3)} A, V=${fmt(q.V,2)} V   R=${fmt(R,1)} Ω`;
+    } else if(key==='prism'){
+      for(let i=5;i<=89;i++){const q=prismStateRaw(i,app.params.prismAngle,app.params.refractiveIndex);if(Number.isFinite(q.deviation))points.push({x:i,y:q.deviation});}const q=prismState(),vals=points.map(v=>v.y);xLabel='Incidence angle i (°)';yLabel='Deviation δ (°)';color=COLORS.accent2;cx=q.incidence;cy=Number.isFinite(q.deviation)?q.deviation:0;xmin=5;xmax=89;ymin=vals.length?Math.min(...vals):0;ymax=vals.length?Math.max(...vals):90;extra=`A ${fmt(q.Adeg,0)}°   n ${fmt(q.n,2)}   i ${fmt(q.incidence,1)}°`;
+    } else if(key==='ydse'){
+      const p=ydseState(),span=Math.max(p.fringeWidth*9,p.firstDiffractionZero*2.7);for(let i=0;i<260;i++){const y=-span/2+span*i/259;points.push({x:y,y:ydseIntensity(y,p.lambda*1e9,p.d*1e3,p.D,p.a*1e3)});}xLabel='Screen position y (m)';yLabel='Normalized intensity';color=COLORS.warn;cx=0;cy=1;xmin=-span/2;xmax=span/2;ymin=0;ymax=1;extra=`β ${fmtSmart(p.fringeWidth)} m   central width ${fmtSmart(p.centralDiffractionWidth)} m`;
+    } else if(key==='thermo'){
+      const p=thermoState(app.t),arr=[];for(let i=0;i<200;i++){const V=p.V1+(p.V2-p.V1)*i/199;const P=p.process==='adiabatic'?p.P1*Math.pow(p.V1/V,p.gamma):p.P1*p.V1/V;arr.push({x:V,y:P});}const vals=arr.map(q=>q.y);xLabel='Volume V (m³)';yLabel='Pressure P (Pa)';color=COLORS.success;cx=p.volume;cy=p.pressure;xmin=p.V1;xmax=p.V2;ymin=Math.min(...vals);ymax=Math.max(...vals);extra=`${p.process==='adiabatic'?'Adiabatic':'Isothermal'}   γ ${fmt(p.gamma,2)}`;
+    }
+    drawLineGraph(ctx,w,h,points,color,cx,cy,xmin,xmax,ymin,ymax,pad,xLabel,yLabel,extra,key);
+  }
+
+  function drawLineGraph(ctx,w,h,points,color,cx,cy,xmin,xmax,ymin,ymax,pad,xLabel,yLabel,extraLabel='',key=''){
+    const options={
+      includeYZero:['projectile','prism','ydse','viwire','thermo'].includes(key),
+      keepYZero:['projectile','prism','ydse','viwire'].includes(key),
+      keepXZero:['projectile','optical','doppler','viwire'].includes(key)
+    };
+    const auto=rangeFromPoints(points,xmin,xmax,options);
+    const xb=niceBounds(auto.xmin,auto.xmax,6),yb=niceBounds(auto.ymin,auto.ymax,6);
+    xmin=xb.min;xmax=xb.max;ymin=yb.min;ymax=yb.max;
+    const sx=x=>pad.l+(x-xmin)/(xmax-xmin)*(w-pad.l-pad.r),sy=y=>h-pad.b-(y-ymin)/(ymax-ymin)*(h-pad.t-pad.b);
+    const innerW=w-pad.l-pad.r, innerH=h-pad.t-pad.b;
+    // Six dynamic divisions keep the scale readable while adapting to the actual data.
+    ctx.strokeStyle='rgba(110,128,153,.24)';ctx.lineWidth=1;
+    for(let i=0;i<=6;i++){
+      const frac=i/6,xx=pad.l+innerW*frac,yy=pad.t+innerH*(1-frac);
+      ctx.beginPath();ctx.moveTo(xx,pad.t);ctx.lineTo(xx,h-pad.b);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(w-pad.r,yy);ctx.stroke();
+    }
+    const dx=xb.step,dy=yb.step;
+    ctx.fillStyle=COLORS.muted;ctx.font='500 10px ui-monospace, SFMono-Regular, Menlo, monospace';ctx.textBaseline='top';ctx.textAlign='center';
+    for(let i=0;i<=6;i++){
+      const xv=xmin+dx*i,xx=pad.l+innerW*i/6;
+      ctx.fillText(formatAxis(xv,dx),xx,h-pad.b+11);
+    }
+    ctx.textAlign='right';ctx.textBaseline='middle';
+    for(let i=0;i<=6;i++){
+      const yv=ymin+dy*i,yy=h-pad.b-innerH*i/6;
+      ctx.fillText(formatAxis(yv,dy),pad.l-10,yy);
+    }
+    // Axis lines + tick marks make the scale explicit.
+    ctx.strokeStyle='#5d6e86';ctx.lineWidth=1.8;ctx.beginPath();ctx.moveTo(pad.l,pad.t);ctx.lineTo(pad.l,h-pad.b);ctx.lineTo(w-pad.r,h-pad.b);ctx.stroke();
+    ctx.strokeStyle='#71819a';ctx.lineWidth=1.2;
+    for(let i=0;i<=6;i++){
+      const xx=pad.l+innerW*i/6, yy=h-pad.b-innerH*i/6;
+      ctx.beginPath();ctx.moveTo(xx,h-pad.b);ctx.lineTo(xx,h-pad.b+6);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(pad.l-6,yy);ctx.stroke();
+    }
+    // Data curve
+    ctx.strokeStyle=color;ctx.lineWidth=3;ctx.beginPath();points.forEach((q,i)=>{const xx=sx(q.x),yy=sy(q.y);if(i===0)ctx.moveTo(xx,yy);else ctx.lineTo(xx,yy);});ctx.stroke();
+    if(key==='viwire'){
+      ctx.setLineDash([6,5]);ctx.strokeStyle='rgba(255,209,102,.55)';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(sx(clamp(cx,xmin,xmax)),sy(0));ctx.lineTo(sx(clamp(cx,xmin,xmax)),sy(clamp(cy,ymin,ymax)));ctx.lineTo(sx(0),sy(clamp(cy,ymin,ymax)));ctx.stroke();ctx.setLineDash([]);
+      text(ctx,'OPERATING POINT',sx(clamp(cx,xmin,xmax))+10,sy(clamp(cy,ymin,ymax))-17,9,COLORS.warn,'left','900');
+    }
+    const safeX=clamp(cx,xmin,xmax),safeY=clamp(cy,ymin,ymax);ctx.fillStyle=color;ctx.beginPath();ctx.arc(sx(safeX),sy(safeY),6,0,Math.PI*2);ctx.fill();ctx.strokeStyle='rgba(255,255,255,.45)';ctx.lineWidth=1.4;ctx.beginPath();ctx.arc(sx(safeX),sy(safeY),11,0,Math.PI*2);ctx.stroke();
+    text(ctx,xLabel,(pad.l+w-pad.r)/2,h-28,11,COLORS.text,'center','800');ctx.save();ctx.translate(20,(pad.t+h-pad.b)/2);ctx.rotate(-Math.PI/2);text(ctx,yLabel,0,0,11,COLORS.text,'center','800');ctx.restore();
+    text(ctx,`X scale: ${formatAxis(xmin,dx)} → ${formatAxis(xmax,dx)}  •  Δx ≈ ${formatAxis(dx,dx)}`,pad.l,17,9,COLORS.muted,'left','700');
+    text(ctx,`Y scale: ${formatAxis(ymin,dy)} → ${formatAxis(ymax,dy)}  •  Δy ≈ ${formatAxis(dy,dy)}`,pad.l+265,17,9,COLORS.muted,'left','700');
+    if(extraLabel)text(ctx,extraLabel,w-pad.r,17,9,COLORS.muted,'right','700');
+  }
+
+  function niceTicks(min,max,count=5){
+    const span=Math.abs(max-min)||1;
+    const raw=span/count;
+    const power=Math.pow(10,Math.floor(Math.log10(raw)));
+    const normalized=raw/power;
+    const step=(normalized<1.5?1:normalized<3?2:normalized<7?5:10)*power;
+    const start=Math.ceil(min/step-1e-10)*step;
+    const ticks=[];
+    for(let v=start;v<=max+step*0.5;v+=step){ticks.push(v);if(ticks.length>10)break;}
+    if(!ticks.length) ticks.push(min,max);
+    return ticks;
+  }
+
+  function formatAxis(v,range){
+    const a=Math.abs(v), r=Math.abs(range)||1;
+    if(a===0) return '0';
+    if(a>=1000 || a<0.001 || r<0.01) return v.toExponential(2);
+    if(r>=100) return v.toFixed(0);
+    if(r>=10) return v.toFixed(1);
+    if(r>=1) return v.toFixed(2);
+    if(r>=0.1) return v.toFixed(3);
+    return v.toExponential(2);
   }
 
   function shareCurrent() {
@@ -901,12 +1355,32 @@
     const t=$('#toast');t.textContent=message;t.classList.add('show');clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.remove('show'),2800);
   }
 
+  // ---------- Opening intro ----------
+  function initIntroScreen() {
+    const intro = $('#introScreen');
+    const start = $('#letsStartButton');
+    if (!intro || !start) return;
+    document.body.classList.add('intro-active');
+    const closeIntro = () => {
+      intro.classList.add('is-hidden');
+      document.body.classList.remove('intro-active');
+      setTimeout(() => intro.remove(), 700);
+      try { start.blur(); } catch (_) {}
+    };
+    start.addEventListener('click', closeIntro, { once: true });
+    start.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); closeIntro(); }
+    });
+    setTimeout(() => start.focus(), 60);
+  }
+
   // ---------- Routing ----------
   function routeFromHash() {
     const key=window.location.hash.slice(1);
     if (simulations[key]) openSimulator(key,false); else showView('home');
   }
 
+  initIntroScreen();
   // ---------- Events ----------
   renderCards();
   $$('[data-go-simulators]').forEach(b=>b.addEventListener('click',()=>{showView('home');document.querySelector('.section-heading').scrollIntoView({behavior:'smooth'});}));

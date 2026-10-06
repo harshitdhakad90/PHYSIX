@@ -3,11 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="PHYSIX - Interactive Virtual Physics Lab with six browser-based physics simulations." />
+  <meta name="description" content="PHYSIX - Interactive Virtual Physics Lab with ten browser-based physics experiments and simulations." />
   <title>PHYSIX — Interactive Virtual Physics Lab</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <div id="introScreen" class="intro-screen" role="dialog" aria-modal="true" aria-labelledby="introTitle">
+    <div class="intro-stars" aria-hidden="true"></div>
+    <div class="intro-orbit intro-orbit-a" aria-hidden="true"></div>
+    <div class="intro-orbit intro-orbit-b" aria-hidden="true"></div>
+    <div class="intro-core" aria-hidden="true">⚛</div>
+    <div class="intro-content">
+      <div class="intro-kicker">WELCOME TO PHYSIX</div>
+      <h1 id="introTitle">Dive into the<br><span>world of physics.</span></h1>
+      <p class="intro-message">
+        Created by <strong>Harshit &amp; Team</strong><br>
+        A virtual laboratory where equations become motion, waves, light, and experiments.
+      </p>
+      <div class="intro-equations" aria-hidden="true">
+        <span>F = ma</span><span>V = IR</span><span>λ = h/p</span><span>PV = nRT</span>
+      </div>
+      <button id="letsStartButton" class="intro-start-btn" type="button">LET'S START <span>→</span></button>
+      <div class="intro-footnote">10 interactive experiments • Built for learning through visualization</div>
+    </div>
+  </div>
+
   <header class="site-header">
     <div class="brand" data-go-home tabindex="0" role="button" aria-label="Go to PHYSIX home">
       <div class="brand-mark">⚛</div>
@@ -34,7 +55,7 @@
             run a simulation, watch the phenomenon unfold, and inspect the calculated results.
           </p>
           <div class="hero-actions">
-            <button class="primary-btn" data-go-simulators>Explore 6 Simulators →</button>
+            <button class="primary-btn" data-go-simulators>Explore 10 Experiments →</button>
             <button class="secondary-btn" data-open-about>How it works</button>
           </div>
           <div class="hero-note">
@@ -56,9 +77,9 @@
       <div class="section-heading">
         <div>
           <div class="eyebrow">THE LAB</div>
-          <h2>Six phenomena. One interactive workspace.</h2>
+          <h2>Ten phenomena. One interactive workspace.</h2>
         </div>
-        <div class="section-count">06 SIMULATORS</div>
+        <div class="section-count">10 EXPERIMENTS</div>
       </div>
 
       <div id="simulatorCards" class="simulator-grid"></div>
@@ -79,6 +100,10 @@
             <option value="pendulum">🔔 Simple Pendulum</option>
             <option value="induction">🧲 Electromagnetic Induction</option>
             <option value="doppler">🔊 Doppler Effect</option>
+            <option value="viwire">⚡ V-I Characteristic of Wire</option>
+            <option value="prism">🔺 Prism / Minimum Deviation</option>
+            <option value="ydse">🌈 Young's Double Slit</option>
+            <option value="thermo">🌡️ Thermodynamics</option>
           </select>
           <button id="shareButton" class="secondary-btn">Share</button>
           <button id="resetButton" class="secondary-btn">Reset</button>
@@ -168,12 +193,12 @@
       <div class="project-strip">
         <div><span class="strip-label">TECH STACK</span><strong>HTML • CSS • JavaScript • Canvas API</strong></div>
         <div><span class="strip-label">PROJECT TYPE</span><strong>Educational Software / Physics Simulation</strong></div>
-        <div><span class="strip-label">SIMULATIONS</span><strong>6 Interactive Models</strong></div>
+        <div><span class="strip-label">EXPERIMENTS</span><strong>10 Interactive Experiments</strong></div>
       </div>
     </section>
   </main>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=10"></script>
 </body>
 </html>
